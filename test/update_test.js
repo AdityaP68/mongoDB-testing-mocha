@@ -93,7 +93,7 @@ describe("Updating a user in the db", () => {
   it("Updating using the update operator", (done) => {
     User.updateMany(
       { name: "joe" },
-      { name: "dog", $inc: { postCount: 1 } }
+      
     ).then(() => {
       done();
     });
