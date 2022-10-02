@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const PostSchema = require('./post')
 //a user has many posts
 
 const UserSchema = new Schema({
@@ -12,8 +13,15 @@ const UserSchema = new Schema({
         },
         required: [true, 'Name is required.'],
     },
-    postCount: Number
+    posts: [PostSchema]
 });
+
+//virtual property of the user model
+// arrow function cant be used as it doesnt has this binding
+//getter property defined - ES6
+UserSchema.virtual('postCount').get(function(){
+    return this.posts.length
+})
 
 const User = mongoose.model('user', UserSchema);
 
