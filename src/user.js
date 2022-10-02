@@ -13,7 +13,11 @@ const UserSchema = new Schema({
         },
         required: [true, 'Name is required.'],
     },
-    posts: [PostSchema]
+    posts: [PostSchema],
+    blogPosts: [{
+        type: Schema.Types.ObjectId,
+        ref: 'blogPost'
+    }]
 });
 
 //virtual property of the user model
