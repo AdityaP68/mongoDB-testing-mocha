@@ -15,8 +15,14 @@ before((done) => {
 
 //hook -> executes before running each test
 beforeEach((done) => {
-  mongoose.connection.collections.users.drop(() => {
+  const {users, comments, blogPosts} = mongoose.connection.collections
+  users.drop(() => {
     //Ready to run the next test
-    done();
+    //cant drop multiple collection at the same time this we drop sequentially
+    comments.drop(()=>{
+      blogPosts.drop(()=>{
+        done();
+      })
+    })
   });
 });
