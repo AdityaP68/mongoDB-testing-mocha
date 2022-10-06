@@ -14,7 +14,7 @@ const UserSchema = new Schema({
         required: [true, 'Name is required.'],
     },
     posts: [PostSchema],
-    //user can have collection of blogposts thats what the array indicates
+    //user can have collection of blogposts thats what the array
     blogPosts: [{
         type: Schema.Types.ObjectId,
         ref: 'blogPost'
